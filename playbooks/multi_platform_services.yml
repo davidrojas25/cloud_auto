@@ -17,13 +17,13 @@
       set_fact:
         mode: auto
         service: Web-Server
-      when: mode_survey == yes and ansible_distribution contains "windows"
+      when: mode_survey == yes and "windows" in ansible_distribution 
 
     - name: set windows specific value for mode var
       set_fact:
         mode: manual
         service: Web-Server
-      when: mode_survey == no and ansible_distribution contains "windows"
+      when: mode_survey == no and "windows" in ansible_distribution
 
     - name: set windows specific value for mode var
       set_fact:
@@ -35,11 +35,11 @@
         name: "{{ service }}"
         start_mode: "{{ mode }}"
         state: "{{ service_state }}"
-      when: ansible_distribution contains "windows"   
+      when: "windows" in ansible_distribution   
 
     - name: Set service startup mode and current state
       service:
         name: "{{ service }}"
         state: "{{ service_state }}"
         enabled: "{{ mode_survey }}" 
-      when: ansible_distribution contains "red"     
+      when: "red" in ansible_distribution     
