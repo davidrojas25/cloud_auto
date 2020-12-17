@@ -16,12 +16,19 @@
     - name: set windows specific value for mode var
       set_fact:
         mode: auto
-      when: mode_survey == no and ansible_distribution contains "windows"
+        service: Web-Server
+      when: mode_survey == yes and ansible_distribution contains "windows"
 
     - name: set windows specific value for mode var
       set_fact:
         mode: manual
+        service: Web-Server
       when: mode_survey == no and ansible_distribution contains "windows"
+
+    - name: set windows specific value for mode var
+      set_fact:
+        service: httpd
+      when: ansible_distribution contains "red"      
 
     - name: Set service startup mode and current state
       ansible.windows.win_service:
