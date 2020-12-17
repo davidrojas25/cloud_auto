@@ -1,0 +1,17 @@
+- name: select the cloud provider
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: aws
+      include_role:
+        name: "../roles/aws"
+      when:
+        - cloud == aws
+
+    - name: azure
+      include_role:
+        name: "../roles/azure"
+      when:
+        - cloud == azure 

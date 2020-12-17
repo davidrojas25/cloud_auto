@@ -1,0 +1,13 @@
+- name: select the cloud provider
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  vars:
+    aws: True
+    azure: False
+
+  tasks:
+    - name: setting var to match which workflow to use
+      set_fact:
+        aws: "{{ cloud_fact }}"

@@ -1,0 +1,16 @@
+---
+- name: set windows specific value for mode var
+  set_fact:
+    mode: auto
+  when: mode_survey == yes
+
+- name: set windows specific value for mode var
+  set_fact:
+    mode: manual
+  when: mode_survey == no
+
+- name: Set service startup mode and current state
+  ansible.windows.win_service:
+    name: "{{ service }}"
+    start_mode: "{{ mode }}"
+    state: "{{ service_state }}"

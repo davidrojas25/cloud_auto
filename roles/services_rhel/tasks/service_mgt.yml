@@ -1,0 +1,7 @@
+---
+
+- name: Set service startup mode and current state
+  service:
+    name: "{{ service }}"
+    state: "{{ service_state }}"
+    enabled: "{{ mode_survey }}"
