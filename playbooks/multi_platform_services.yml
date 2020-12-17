@@ -1,20 +1,12 @@
 - name: manage state of windows services
   hosts: mixed_web_servers
   connection: local
-  gather_facts: False
+  gather_facts: True
 
   tasks:
     
-    - name: RHEL
-      include_role:
-        name: "roles/services_rhel"
-      when:
-        - os == rhel
-
-    - name: Windows 
-      include_role:
-        name: "roles/services_windows"
-      when:
-        - os == windows
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
     
     
