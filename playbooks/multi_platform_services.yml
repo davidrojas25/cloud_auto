@@ -13,4 +13,26 @@
       ansible.builtin.debug:
         var: ansible_distribution    
     
-    
+    - name: set windows specific value for mode var
+      set_fact:
+        mode: auto
+      when: mode_survey == no and ansible_distribution contains "windows"
+
+    - name: set windows specific value for mode var
+      set_fact:
+        mode: manual
+      when: mode_survey == no and ansible_distribution contains "windows"
+
+    - name: Set service startup mode and current state
+      ansible.windows.win_service:
+        name: "{{ service }}"
+        start_mode: "{{ mode }}"
+        state: "{{ service_state }}"
+      when: ansible_distribution contains "windows"   
+
+    - name: Set service startup mode and current state
+      service:
+        name: "{{ service }}"
+        state: "{{ service_state }}"
+        enabled: "{{ mode_survey }}" 
+      when: ansible_distribution contains "red"     
