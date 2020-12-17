@@ -28,7 +28,7 @@
     - name: set windows specific value for mode var
       set_fact:
         service: httpd
-      when: 'ansible_distribution contains "red"'    
+      when: '"red" in ansible_distribution'    
 
     - name: Set service startup mode and current state
       win_service:
