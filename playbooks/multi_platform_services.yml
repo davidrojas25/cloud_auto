@@ -1,5 +1,5 @@
 - name: manage state of windows services
-  hosts: windows
+  hosts: mixed_web_servers
   connection: local
   gather_facts: False
 
