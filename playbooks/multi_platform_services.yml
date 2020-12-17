@@ -17,13 +17,13 @@
       set_fact:
         mode: auto
         service: Web-Server
-      when: 'mode_survey == yes and "windows" in ansible_distribution' 
+      when: 'mode_survey == "yes" and "windows" in ansible_distribution' 
 
     - name: set windows specific value for mode var
       set_fact:
         mode: manual
         service: Web-Server
-      when: 'mode_survey == no and "windows" in ansible_distribution'
+      when: 'mode_survey == "no" and "windows" in ansible_distribution'
 
     - name: set windows specific value for mode var
       set_fact:
