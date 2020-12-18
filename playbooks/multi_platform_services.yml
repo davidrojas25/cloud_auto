@@ -11,23 +11,31 @@
 
     - name: Print os type
       ansible.builtin.debug:
-        var: ansible_distribution    
+        var: ansible_distribution   
+
+    - name: set windows specific value for service
+      set_fact:
+        service: Web-Server
+      when: '"Windows" in ansible_distribution and service_survey == "web service"' 
+
+    - name: set windows specific value for service var
+      set_fact:
+        service: httpd
+      when: '"RedHat" in ansible_distribution service_survey == "web service"'     
     
     - name: set windows specific value for mode var
       set_fact:
         mode: auto
-        service: Web-Server
       when: 'mode_survey == "yes" and "Windows" in ansible_distribution' 
 
     - name: set windows specific value for mode var
       set_fact:
         mode: manual
-        service: Web-Server
       when: 'mode_survey == "no" and "Windows" in ansible_distribution'
 
     - name: set windows specific value for mode var
       set_fact:
-        service: httpd
+        service: "{{ service_survey }}"
       when: '"RedHat" in ansible_distribution'    
 
     - name: Set service startup mode and current state
