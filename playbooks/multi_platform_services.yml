@@ -45,4 +45,5 @@
         name: "{{ service }}"
         state: "{{ service_state }}"
         enabled: "{{ mode_survey }}" 
+      become: yes  
       when: '"RedHat" in ansible_distribution'     
