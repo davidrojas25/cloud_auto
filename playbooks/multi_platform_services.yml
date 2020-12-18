@@ -21,7 +21,7 @@
     - name: set windows specific value for service var
       set_fact:
         service: httpd
-      when: '"RedHat" in ansible_distribution service_survey == "web service"'     
+      when: '"RedHat" in ansible_distribution and service_survey == "web service"'     
     
     - name: set windows specific value for mode var
       set_fact:
