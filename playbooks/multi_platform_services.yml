@@ -38,6 +38,7 @@
         name: "{{ service }}"
         start_mode: "{{ mode }}"
         state: "{{ service_state }}"
+        force_dependent_services: yes
       when: '"Windows" in ansible_distribution'   
 
     - name: Set service startup mode and current state
