@@ -15,7 +15,7 @@
 
     - name: set windows specific value for service
       set_fact:
-        service: Web-Server
+        service: W3Svc
       when: '"Windows" in ansible_distribution and service_survey == "web service"' 
 
     - name: set RHEL specific value for service var
