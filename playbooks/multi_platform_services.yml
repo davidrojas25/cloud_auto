@@ -18,7 +18,7 @@
         service: Web-Server
       when: '"Windows" in ansible_distribution and service_survey == "web service"' 
 
-    - name: set windows specific value for service var
+    - name: set RHEL specific value for service var
       set_fact:
         service: httpd
       when: '"RedHat" in ansible_distribution and service_survey == "web service"'     
@@ -32,11 +32,6 @@
       set_fact:
         mode: manual
       when: 'mode_survey == "no" and "Windows" in ansible_distribution'
-
-    - name: set windows specific value for mode var
-      set_fact:
-        service: "{{ service_survey }}"
-      when: '"RedHat" in ansible_distribution'    
 
     - name: Set service startup mode and current state
       win_service:
